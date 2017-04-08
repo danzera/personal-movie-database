@@ -5,20 +5,43 @@
     <title>PMDB - Personal Movie Database</title>
     <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
-
     <script src="vendors/angular/angular.min.js" charset="utf-8"></script>
     <script src="scripts/client.min.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1>Personal Movie Database</h1>
-    <div ng-controller="InputController">
-      <label for="title">Movie Title: </label><input ng-model="title" type="text" name="title" placeholder="Search by title">
-      <button ng-click="searchOMDB(title)" class="btn btn-primary" type="button" name="search">Search OMDB</button><br>
-      {{searchResults.response.data}}
-    </div><!--end InputController-->
-    <div ng-controller="OutputController">
+    <div class="container">
+      <div ng-controller="InputController">
+        <div class="row row1"><!--row 1-->
+          <div class="col-md-12">
+            <h1 class="text-center">Personal Movie Database</h1>
+          </div>
+        </div><!--end row 1-->
+        <div class="row row2 text-center"><!--row 2-->
+          <div class="col-md-12">
+            <form class="omdbSearch">
+              <span class="glyphicon glyphicon-film"></span>
+              <input ng-model="title" type="text" name="title" placeholder="Search by Title">
+              <input ng-click="searchOMDB(title)" type="submit" class="btn btn-primary" value="Search OMDB">
+            </form>
+          </div>
+        </div><!--end row 2-->
+        <div ng-show="searchResults.response.data.Title" class="row row3"><!--row 3-->
+          <div class="col-md-6 text-right">
+            <img class="poster" ng-src="{{searchResults.response.data.Poster}}">
+          </div>
+          <div class="col-md-3">
+            <p>{{searchResults.response.data.Title}}</p>
+            <p>Theatrical Release: {{searchResults.response.data.Year}}</p>
+            <p>Directed By: {{searchResults.response.data.Director}}</p>
+            <p>{{searchResults.response.data.Plot}}</p>
+            <button type="button" name="addToFavorites">Add to Favorites</button>
+          </div>
+        </div><!--end row 3-->
+      </div><!--end InputController-->
+      <div ng-controller="OutputController">
 
-    </div><!--end OutputController-->
-    <script src="//localhost:35729/livereload.js"></script>
+      </div><!--end OutputController-->
+      <script src="//localhost:35729/livereload.js"></script>
+    </div><!--end main container-->
   </body>
 </html>
