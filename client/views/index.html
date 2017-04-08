@@ -14,7 +14,7 @@
     <div ng-controller="InputController">
       <label for="title">Movie Title: </label><input ng-model="title" type="text" name="title" placeholder="Search by title">
       <button ng-click="searchOMDB(title)" class="btn btn-primary" type="button" name="search">Search OMDB</button><br>
-      {{searchResults.response}}
+      {{searchResults.response.data}}
     </div><!--end InputController-->
     <div ng-controller="OutputController">
 
