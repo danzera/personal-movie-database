@@ -17,10 +17,11 @@ pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scop
 pmdbApp.factory('MovieService', ['$http', function($http) {
   // searchResults object will be used to store response from the OMDB API
   var searchResults = {};
+  var favoriteMovies = [];
 
   // public information
   return {
-    // DO WE WANT THE SEARCH RESULTS TO HAVE A REFERENCE STORED TO THE RETURN OBJ?
+    favoriteMovies: favoriteMovies,
     searchResults: searchResults, // pass an object referece
     searchOMDB: function(title) {
       $http.get('http://www.omdbapi.com/?t=' + title).then(function(response) {
@@ -31,6 +32,9 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
           searchResults.response = response;
         }
       }); // end $http.get
-    } // end searchOMDB()
+    }, // end searchOMDB()
+    addToFavorites: function(movie) {
+      
+    }
   }; // end return
 }]); // end 'MovieService'

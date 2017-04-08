@@ -26,15 +26,21 @@
           </div>
         </div><!--end row 2-->
         <div ng-show="searchResults.response.data.Title" class="row row3"><!--row 3-->
-          <div class="col-md-6 text-right">
+          <div class="col-md-6 text-right"><!--left half of searchResults-->
             <img class="poster" ng-src="{{searchResults.response.data.Poster}}">
-          </div>
-          <div class="col-md-3">
-            <p>{{searchResults.response.data.Title}}</p>
-            <p>Theatrical Release: {{searchResults.response.data.Year}}</p>
-            <p>Directed By: {{searchResults.response.data.Director}}</p>
-            <p>{{searchResults.response.data.Plot}}</p>
-            <button type="button" name="addToFavorites">Add to Favorites</button>
+          </div><!--end left half of searchResults-->
+          <div class="col-md-6"><!--right half of searchResults-->
+            <div class="row"><!--row 3.1-->
+              <h2 class="searchTitle">{{searchResults.response.data.Title}}</h2>
+            </div><!--end row 3.1-->
+            <div class="row"><!--row 3.2-->
+              <div class="col-md-8 subText">
+                <p class="lead">Directed By: {{searchResults.response.data.Director}}</p>
+                <p>Theatrical Release: {{searchResults.response.data.Year}}</p>
+                <p>{{searchResults.response.data.Plot}}</p>
+                <button class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
+              </div>
+            </div><!--end row 3.2-->
           </div>
         </div><!--end row 3-->
       </div><!--end InputController-->
