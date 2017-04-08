@@ -9,3 +9,11 @@ body {
 .poster {
   height: 250px;
 }
+.searchTitle {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.subText {
+  padding-left: 0px;
+}
