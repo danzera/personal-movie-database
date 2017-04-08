@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="pmdbApp">
   <head>
     <meta charset="utf-8">
     <title>PMDB - Personal Movie Database</title>
@@ -11,7 +11,12 @@
   </head>
   <body>
     <h1>Weekend Challenge 5</h1>
-    
+    <div ng-controller="InputController">
+      {{hello}}
+    </div>
+    <div ng-controller="OutputController">
+      {{hello}}
+    </div>
     <script src="//localhost:35729/livereload.js"></script>
   </body>
 </html>
