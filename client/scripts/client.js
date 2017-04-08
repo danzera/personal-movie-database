@@ -3,7 +3,8 @@ var pmdbApp = angular.module('pmdbApp', []);
 pmdbApp.controller('InputController', ['$scope', 'MovieService', function($scope, MovieService) {
   console.log('InputController loaded');
   $scope.title = '';
-  MovieService.searchOMDB($scope.title);
+  $scope.searchOMDB = MovieService.searchOMDB;
+  $scope.searchResults = MovieService.searchResults;
 }]);
 
 pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scope, MovieService) {
@@ -11,10 +12,15 @@ pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scop
 }]);
 
 pmdbApp.factory('MovieService', ['$http', function($http) {
+  // IS THIS THE RIGHT WAY TO GO ABOUT THIS?
+  var searchResults = {};
   return {
+    // DO WE WANT THE SEARCH RESULTS TO HAVE A REFERENCE STORED TO THE RETURN OBJ?
+    searchResults: searchResults, // pass an object referece
     searchOMDB: function(title) {
-      $http.get('http://www.omdbapi.com/?t=Galaxy+Quest').then(function(response) {
+      $http.get('http://www.omdbapi.com/?t=' + title).then(function(response) {
         console.log(response);
+        searchResults.response = response; // store search response as an object property
       });
     }
   };
