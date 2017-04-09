@@ -11,9 +11,12 @@
   <body>
     <div class="container">
       <div ng-controller="InputController">
+
+        <div class="header">
+
         <div class="row row1"><!--row 1-->
-          <div class="col-md-12">
-            <h1 class="text-center">Personal Movie Database</h1>
+          <div class="col-md-12 text-center">
+            <h1>Personal Movie Database</h1>
           </div>
         </div><!--end row 1-->
         <div class="row row2 text-center"><!--row 2-->
@@ -25,6 +28,9 @@
             </form>
           </div>
         </div><!--end row 2-->
+
+        </div>
+
         <div ng-show="searchResults.response.data.Title" class="row row3"><!--row 3-->
           <div class="col-md-6 text-right"><!--left half of searchResults-->
             <img class="poster" ng-src="{{searchResults.response.data.Poster}}">
@@ -38,14 +44,33 @@
                 <p class="lead">Directed By: {{searchResults.response.data.Director}}</p>
                 <p>Theatrical Release: {{searchResults.response.data.Year}}</p>
                 <p>{{searchResults.response.data.Plot}}</p>
-                <button class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
+                <button ng-click="addToFavorites(searchResults.response.data)" class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
               </div>
             </div><!--end row 3.2-->
-          </div>
+          </div><!--end right half of searchResults-->
         </div><!--end row 3-->
       </div><!--end InputController-->
       <div ng-controller="OutputController">
-
+        <div class="row row4">
+          <div ng-repeat="movie in movieService.favoriteMovies"><!--FAVORITE MOVIES LOOP-->
+            <div class="col-md-6 text-right"><!--left half of searchResults-->
+              <img class="poster" ng-src="{{searchResults.response.data.Poster}}">
+            </div><!--end left half of searchResults-->
+            <div class="col-md-6"><!--right half of searchResults-->
+              <div class="row"><!--row 3.1-->
+                <h2 class="searchTitle">{{searchResults.response.data.Title}}</h2>
+              </div><!--end row 3.1-->
+              <div class="row"><!--row 3.2-->
+                <div class="col-md-8 subText">
+                  <p class="lead">Directed By: {{searchResults.response.data.Director}}</p>
+                  <p>Theatrical Release: {{searchResults.response.data.Year}}</p>
+                  <p>{{searchResults.response.data.Plot}}</p>
+                  <button ng-click="addToFavorites(searchResults.response.data)" class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
+                </div>
+              </div><!--end row 3.2-->
+            </div><!--end right half of movie-->
+          </div><!--end FAVORITE MOVIES LOOP-->
+        </div>
       </div><!--end OutputController-->
       <script src="//localhost:35729/livereload.js"></script>
     </div><!--end main container-->

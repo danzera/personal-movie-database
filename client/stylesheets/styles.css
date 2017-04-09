@@ -1,5 +1,11 @@
 body {
-  background-color: salmon;
+  background-image: url(../images/film-strip.jpeg);
+  background-size: cover;
+}
+
+h1 {
+  display: inline;
+  background-color: white;
 }
 
 .row3 {
@@ -16,4 +22,8 @@ body {
 
 .subText {
   padding-left: 0px;
+}
+
+.searchBar {
+  background-color: salmon;
 }

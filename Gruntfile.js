@@ -8,6 +8,12 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      images: {
+        expand: true,
+        cwd: 'client/images/', // Current working directory
+        src: ['*.*'], // List of files to copy
+        dest: 'server/public/images/' // Destination
+      },
       html: {
         expand: true,
         cwd: 'client/views/', // Current working directory
