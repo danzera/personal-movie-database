@@ -38,7 +38,7 @@
                 <p class="lead">Directed By: {{searchResults.response.data.Director}}</p>
                 <p>Theatrical Release: {{searchResults.response.data.Year}}</p>
                 <p>{{searchResults.response.data.Plot}}</p>
-                <button class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
+                <button ng-click="addToFavorites(searchResults.response.data)" class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
               </div>
             </div><!--end row 3.2-->
           </div>

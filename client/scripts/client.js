@@ -7,7 +7,8 @@ pmdbApp.controller('InputController', ['$scope', 'MovieService', function($scope
   // reference to searchResults object
   // object contains the OMDB response as a property
   $scope.searchResults = MovieService.searchResults;
-  $scope.getPoster = MovieService.getPoster; // data-bound to
+  $scope.getPoster = MovieService.getPoster; // bound to 'Search OMDB' button
+  $scope.addToFavorites = MovieService.addToFavorites; // bound to 'Add to Favorites' button
 }]); // end 'InputController'
 
 pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scope, MovieService) {
@@ -34,7 +35,7 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
       }); // end $http.get
     }, // end searchOMDB()
     addToFavorites: function(movie) {
-      
+      console.log(movie);
     }
   }; // end return
 }]); // end 'MovieService'
