@@ -13,6 +13,7 @@ pmdbApp.controller('InputController', ['$scope', 'MovieService', function($scope
 
 pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scope, MovieService) {
   console.log('OutputController loaded');
+  $scope.movieService = MovieService;
 }]); // end 'OutputController'
 
 pmdbApp.factory('MovieService', ['$http', function($http) {
@@ -36,6 +37,8 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
     }, // end searchOMDB()
     addToFavorites: function(movie) {
       console.log(movie);
+      favoriteMovies.push(movie);
+      console.log(favoriteMovies);
     }
   }; // end return
 }]); // end 'MovieService'
