@@ -21,6 +21,15 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
   var searchResults = {};
   var favoriteMovies = [];
 
+  function isNewMovie(movie) {
+    for (var i = 0; i < favoriteMovies.length; i++) {
+      if (movie.imdbID === favoriteMovies[i].imdbID) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   // public information
   return {
     favoriteMovies: favoriteMovies,
@@ -36,9 +45,12 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
       }); // end $http.get
     }, // end searchOMDB()
     addToFavorites: function(movie) {
-      console.log(movie);
-      favoriteMovies.push(movie);
-      console.log(favoriteMovies);
-    }
+      var newMovie = isNewMovie(movie); // verify if movie has already been favorited
+      if (newMovie) { // add to favoriteMovies if it's a new movie
+        favoriteMovies.push(movie);
+      } else { // alert user if it's already been favorited
+        alert('This movie is already in your list of favorites.');
+      }
+    } // end addToFavorites()
   }; // end return
 }]); // end 'MovieService'

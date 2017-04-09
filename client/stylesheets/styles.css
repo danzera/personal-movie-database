@@ -13,7 +13,7 @@ h1 {
 }
 
 .poster {
-  height: 250px;
+  max-height: 250px;
 }
 .searchTitle {
   margin-top: 0px;
@@ -26,4 +26,20 @@ h1 {
 
 .searchBar {
   background-color: salmon;
+}
+
+.movie {
+  border: 1px solid black;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.movieInfo {
+  height: 250px;
+}
+
+.deleteRow {
+  height: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

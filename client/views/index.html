@@ -26,10 +26,10 @@
           </div>
         </div><!--end row 2-->
         <div ng-show="searchResults.response.data.Title" class="row row3"><!--row 3-->
-          <div class="col-md-6 text-right"><!--left half of searchResults-->
+          <div class="col-md-5 text-right"><!--left half of searchResults-->
             <img class="poster" ng-src="{{searchResults.response.data.Poster}}">
           </div><!--end left half of searchResults-->
-          <div class="col-md-6"><!--right half of searchResults-->
+          <div class="col-md-7"><!--right half of searchResults-->
             <div class="row"><!--row 3.1-->
               <h2 class="searchTitle">{{searchResults.response.data.Title}}</h2>
             </div><!--end row 3.1-->
@@ -47,22 +47,28 @@
       <div ng-controller="OutputController">
         <div class="row row4"><!--row 4-->
           <div ng-repeat="movie in movieService.favoriteMovies"><!--FAVORITE MOVIES LOOP-->
-            <div class="col-md-3 text-right"><!--left half of searchResults-->
-              <img class="poster" ng-src="{{movie.Poster}}">
-            </div><!--end left half of searchResults-->
-            <div class="col-md-3"><!--right half of searchResults-->
-              <div class="row"><!--row 3.1-->
-                <h2 class="searchTitle">{{movie.Title}}</h2>
-              </div><!--end row 3.1-->
-              <div class="row"><!--row 3.2-->
-                <div class="col-md-8 subText">
-                  <p class="lead">Directed By: {{movie.Director}}</p>
-                  <p>Theatrical Release: {{movie.Year}}</p>
-                  <p>{{movie.Plot}}</p>
-                  <button class="btn btn-success" type="button" name="deleteFromFavorites">Delete from Favorites</button>
-                </div>
-              </div><!--end row 3.2-->
-            </div><!--end right half of movie-->
+            <div class="row"><!--each movie gets new row-->
+              <div class="col-md-2"></div>
+              <div class="col-md-9">
+                <div class="row movieInfo"><!--movie info row-->
+                  <div class="col-md-3 text-right"><!--poster on left side of individual movie listing-->
+                    <img class="poster" ng-src="{{movie.Poster}}">
+                  </div><!--end left side of movie-->
+                  <div class="col-md-9 text-left"><!--right side of movie listing-->
+                    <div class="row"><!--movie sub-row 1-->
+                      <h2 class="searchTitle">{{movie.Title}}</h2>
+                    </div><!--end sub-row 1-->
+                    <div class="row"><!--movie sub-row 2-->
+                      <p class="lead">Directed By: {{movie.Director}}</p>
+                      <p>Theatrical Release: {{movie.Year}}</p>
+                      <p>{{movie.Plot}}</p>
+                      <button class="btn btn-danger" type="button" name="deleteFromFavorites">Delete {{movie.Title}} from Favorites</button>
+                    </div><!--end sub-row 2-->
+                  </div><!--end right side of movie-->
+                </div><!--end movie info row-->
+              </div>
+              <div class="col-md-1"></div>
+            </div><!--end individual movie div-->
           </div><!--end FAVORITE MOVIES LOOP-->
         </div><!--end row 4-->
       </div><!--end OutputController-->
