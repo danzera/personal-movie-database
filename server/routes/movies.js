@@ -2,14 +2,41 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 
-// var MovieSchema = {
-//   movieObject:
-// };
+var MovieSchema = {
+  title: String,
+  imdbID: String
+};
 
+// ModelName = mongoose.model('ModelName', SchemaVariableName, 'CollectionName')
+var Movies = mongoose.model('movies', MovieSchema, 'movies');
+
+// GET all movies
+router.get('/', function(req, res) {
+  Movies.find(function(err, allMovies){
+    if(err){
+      console.log('error getting all movies:', err);
+      res.sendStatus(500);
+    }
+    res.send(allMovies);
+  });
+}); // end GET all movies
+
+// POST a new favorite movie
 router.post('/', function(req, res) {
-  console.log('/movies route hit with movie:', req.body.Title);
-  res.send('work, please');
-});
+    // Instance of the Model to be saved to the database
+    var movie = new Movies({
+      title: req.body.Title,
+      imdbID: req.body.imdbID
+    });
+    movie.save(function(err, savedMovie){
+      if(err){
+        console.log('error saving movie', err);
+        res.sendStatus(500);
+      }
+      console.log('saved:', movie.title, 'imdbID:', movie.imdbID);
+      res.send(savedMovie);
+    });
+}); // end POST a new favorite movie
 
 module.exports = router;
 //

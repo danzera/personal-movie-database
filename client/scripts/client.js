@@ -15,16 +15,20 @@ pmdbApp.controller('InputController', ['$scope', 'MovieService', function($scope
 pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scope, MovieService) {
   console.log('OutputController loaded');
   $scope.movieService = MovieService;
+  $scope.getFavorites = MovieService.getFavorites;
+  $scope.getFavorites();
 }]); // end 'OutputController'
 
 pmdbApp.factory('MovieService', ['$http', function($http) {
   // searchResults object will be used to store response from the OMDB API
   var searchResults = {};
-  /*var searchForm = {
-    title: '',
-    searchResults: {}
-  };*/
   var favoriteMovies = [];
+
+  var getFavorites = function() {
+    $http.get('/movies').then(function(response) {
+      console.log(response);
+    }); // end $http.get
+  }; // end getFavorites()
 
   function isNewMovie(movie) {
     for (var i = 0; i < favoriteMovies.length; i++) {
@@ -46,6 +50,7 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
   return {
     favoriteMovies: favoriteMovies,
     searchResults: searchResults, // pass an object referece
+    getFavorites: getFavorites,
     // searchForm: searchForm,
     searchOMDB: function(title) {
       $http.get('http://www.omdbapi.com/?t=' + title).then(function(response) {
@@ -63,7 +68,7 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
         console.log(movie);
         favoriteMovies.push(movie);
         $http.post('/movies', movie).then(function(response) {
-          console.log(response);
+          console.log('saved movie to database:', response);
         });
         // .then(function(response) {
         //   console.log(response);
