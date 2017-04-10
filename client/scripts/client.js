@@ -15,6 +15,7 @@ pmdbApp.controller('InputController', ['$scope', 'MovieService', function($scope
 pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scope, MovieService) {
   console.log('OutputController loaded');
   $scope.movieService = MovieService;
+  $scope.movies = MovieService.movies;
   $scope.getFavorites = MovieService.getFavorites;
   $scope.getFavorites();
 }]); // end 'OutputController'
@@ -22,17 +23,20 @@ pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scop
 pmdbApp.factory('MovieService', ['$http', function($http) {
   // searchResults object will be used to store response from the OMDB API
   var searchResults = {};
-  var favoriteMovies = [];
+  var movies = {}; // used to store all favorites from DB
 
+  // get all favorites from DB
   var getFavorites = function() {
     $http.get('/movies').then(function(response) {
-      console.log(response);
+      console.log(response.data);
+      movies.favorites = response.data;
+      console.log('favorite movies array:', movies.favorites);
     }); // end $http.get
   }; // end getFavorites()
 
   function isNewMovie(movie) {
-    for (var i = 0; i < favoriteMovies.length; i++) {
-      if (movie.imdbID === favoriteMovies[i].imdbID) {
+    for (var i = 0; i < movies.favorites.length; i++) {
+      if (movie.imdbID === movies.favorites[i].imdbID) {
         return false;
       }
     }
@@ -48,7 +52,7 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
 
   // public information
   return {
-    favoriteMovies: favoriteMovies,
+    movies: movies,
     searchResults: searchResults, // pass an object referece
     getFavorites: getFavorites,
     // searchForm: searchForm,
@@ -64,9 +68,9 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
     }, // end searchOMDB()
     addToFavorites: function(movie) {
       var newMovie = isNewMovie(movie); // verify if movie has already been favorited
-      if (newMovie) { // add to favoriteMovies if it's a new movie
+      if (newMovie) { // add to favorite movies if it's a new movie
         console.log(movie);
-        favoriteMovies.push(movie);
+        movies.favorites.push(movie);
         $http.post('/movies', movie).then(function(response) {
           console.log('saved movie to database:', response);
         });
