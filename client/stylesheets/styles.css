@@ -1,45 +1,44 @@
 body {
-  background-image: url(../images/film-strip.jpeg);
-  background-size: cover;
+  background-color: tan;
+
 }
 
 h1 {
-  display: inline;
-  background-color: white;
+  font-size: 4em;
 }
 
-.row3 {
-  margin-top: 10px;
+h2 {
+  font-size: 3em;
 }
 
-.poster {
-  max-height: 250px;
-}
-.searchTitle {
-  margin-top: 0px;
-  margin-bottom: 0px;
+.header-row {
+  background-color: seashell;
 }
 
-.subText {
-  padding-left: 0px;
+.search-column {
+  background-color: orange;
 }
 
-.searchBar {
+.search-form-row {
+  padding-bottom: 5px;
+}
+
+.favorites-column {
   background-color: salmon;
 }
 
-.movie {
-  border: 1px solid black;
-  background-color: white;
-  margin-top: 10px;
+.adjust-margins {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-.movieInfo {
-  height: 250px;
-}
-
-.deleteRow {
-  height: auto;
+.plot-row {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+/*-----------*/
+
+.poster {
+  max-height: 250px;
 }
