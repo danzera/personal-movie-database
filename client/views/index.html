@@ -59,23 +59,22 @@
             </div>
           </div><!--end favorites-header row-->
 
-          <div ng-repeat="movie in movieService.favoriteMovies" class="row movie-row"><!--FAVORITE MOVIES LOOP-->
+          <div ng-repeat="movie in movieService.favoriteMovies" class="row favorites-movie-row"><!--FAVORITE MOVIES LOOP-->
 
                 <div class="col-md-12">
                   <div class="row">
-                    <h3 class="adjust-margins">{{movie.Title}}</h3>
-                    <p class="lead adjust-margins">Directed By: {{movie.Director}}</p>
-                    <p class="adjust-margins">Theatrical Release: {{movie.Year}}</p>
-                  </div>
-                  <div class="row">
-                    <img ng-src="{{movie.Poster}}">
-                  </div>
-                  <div class="row plot-row">
-                    <p>Plot: {{movie.Plot}}</p>
-                    <button class="btn btn-danger" type="button" name="deleteFromFavorites">Delete {{movie.Title}} from Favorites</button>
+                    <div class="col-md-3">
+                      <img class="favorites-poster" ng-src="{{movie.Poster}}">
+                    </div>
+                    <div class="col-md-9 favorites-movie-summary">
+                      <h3 class="adjust-margins">{{movie.Title}}</h3>
+                      <p class="lead adjust-margins">Directed By: {{movie.Director}}</p>
+                      <p class="adjust-margins">Theatrical Release: {{movie.Year}}</p>
+                      <p>Plot: {{movie.Plot}}</p>
+                      <button class="btn btn-danger" type="button" name="deleteFromFavorites">Delete {{movie.Title}} from Favorites</button>
+                    </div>
                   </div>
                 </div>
-
 
           </div><!--END FAVORITE MOVIES LOOP-->
 

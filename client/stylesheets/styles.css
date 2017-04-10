@@ -27,18 +27,25 @@ h2 {
   background-color: salmon;
 }
 
-.adjust-margins {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
 .plot-row {
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-/*-----------*/
+.favorites-movie-row {
+  padding-top: 10px;
+}
 
-.poster {
+.favorites-poster {
   max-height: 250px;
+  max-width: 100%;
+}
+
+.favorites-movie-summary {
+  padding: 5px;
+}
+
+.adjust-margins {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
