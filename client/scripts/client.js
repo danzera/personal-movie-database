@@ -3,6 +3,7 @@ var pmdbApp = angular.module('pmdbApp', []);
 pmdbApp.controller('InputController', ['$scope', 'MovieService', function($scope, MovieService) {
   console.log('InputController loaded');
   $scope.title = ''; // data-bound to user input field
+  // $scope.searchForm = MovieService.searchForm;
   $scope.searchOMDB = MovieService.searchOMDB; // data-bound to user button click
   // reference to searchResults object
   // object contains the OMDB response as a property
@@ -19,6 +20,10 @@ pmdbApp.controller('OutputController', ['$scope', 'MovieService', function($scop
 pmdbApp.factory('MovieService', ['$http', function($http) {
   // searchResults object will be used to store response from the OMDB API
   var searchResults = {};
+  /*var searchForm = {
+    title: '',
+    searchResults: {}
+  };*/
   var favoriteMovies = [];
 
   function isNewMovie(movie) {
@@ -30,10 +35,18 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
     return true;
   }
 
+  // var saveToDatabase = function(movie) {
+  //   console.log('got here with movie', movie);
+  //   $http.post('/movies', movie).then(function(response) {
+  //     console.log('response');
+  //   });
+  // }
+
   // public information
   return {
     favoriteMovies: favoriteMovies,
     searchResults: searchResults, // pass an object referece
+    // searchForm: searchForm,
     searchOMDB: function(title) {
       $http.get('http://www.omdbapi.com/?t=' + title).then(function(response) {
         console.log(response);
@@ -47,7 +60,16 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
     addToFavorites: function(movie) {
       var newMovie = isNewMovie(movie); // verify if movie has already been favorited
       if (newMovie) { // add to favoriteMovies if it's a new movie
-        favoriteMovies.push(movie);
+        console.log(movie);
+        // favoriteMovies.push(movie);
+        $http.post('/m', {data: movie}).then(function(response) {
+          console.log(response.data);
+        });
+        // .then(function(response) {
+        //   console.log(response);
+        // }).catch(function(err) {
+        //   console.log('error:', err);
+        // });
       } else { // alert user if it's already been favorited
         alert('This movie is already in your list of favorites.');
       }
