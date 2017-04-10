@@ -71,7 +71,9 @@
                       <p class="lead adjust-margins">Directed By: {{movie.Director}}</p>
                       <p class="adjust-margins">Theatrical Release: {{movie.Year}}</p>
                       <p>Plot: {{movie.Plot}}</p>
-                      <button class="btn btn-danger" type="button" name="deleteFromFavorites">Delete {{movie.Title}} from Favorites</button>
+                      <div ng-hide="true"><!--REMOVE WHEN READY TO ADD DELETE FUNCTIONALITY-->
+                        <button class="btn btn-danger" type="button" name="deleteFromFavorites">Delete {{movie.Title}} from Favorites</button>
+                      </div>
                     </div>
                   </div>
                 </div>

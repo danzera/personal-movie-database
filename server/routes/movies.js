@@ -2,10 +2,13 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 
-router.post('/m', function(req, res) {
-  var movie = req.body.data;
-  console.log('/movies route hit with movie:', movie);
-  res.send('ok from server');
+// var MovieSchema = {
+//   movieObject:
+// };
+
+router.post('/', function(req, res) {
+  console.log('/movies route hit with movie:', req.body.Title);
+  res.send('work, please');
 });
 
 module.exports = router;

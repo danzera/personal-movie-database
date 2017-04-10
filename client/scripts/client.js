@@ -61,9 +61,9 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
       var newMovie = isNewMovie(movie); // verify if movie has already been favorited
       if (newMovie) { // add to favoriteMovies if it's a new movie
         console.log(movie);
-        // favoriteMovies.push(movie);
-        $http.post('/m', {data: movie}).then(function(response) {
-          console.log(response.data);
+        favoriteMovies.push(movie);
+        $http.post('/movies', movie).then(function(response) {
+          console.log(response);
         });
         // .then(function(response) {
         //   console.log(response);
