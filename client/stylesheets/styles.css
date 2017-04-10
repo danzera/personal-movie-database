@@ -1,29 +1,44 @@
 body {
-  background-image: url(../images/film-strip.jpeg);
-  background-size: cover;
+  background-color: tan;
+
 }
 
 h1 {
-  display: inline;
-  background-color: white;
+  font-size: 4em;
 }
 
-.row3 {
-  margin-top: 10px;
+h2 {
+  font-size: 3em;
 }
+
+.header-row {
+  background-color: seashell;
+}
+
+.search-column {
+  background-color: orange;
+}
+
+.search-form-row {
+  padding-bottom: 5px;
+}
+
+.favorites-column {
+  background-color: salmon;
+}
+
+.adjust-margins {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.plot-row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/*-----------*/
 
 .poster {
-  height: 250px;
-}
-.searchTitle {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.subText {
-  padding-left: 0px;
-}
-
-.searchBar {
-  background-color: salmon;
+  max-height: 250px;
 }
