@@ -90,8 +90,8 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
   }; // end searchOMDBbyID()
 
   function isNewMovie(movie) {
-    for (var i = 0; i < movies.favorites.length; i++) {
-      if (movie.imdbID === movies.favorites[i].imdbID) {
+    for (var i = 0; i < favorites.moviesArray.length; i++) {
+      if (movie.imdbID === favorites.moviesArray[i].imdbID) {
         return false;
       }
     }
@@ -126,7 +126,7 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
       var newMovie = isNewMovie(movie); // verify if movie has already been favorited
       if (newMovie) { // add to favorite movies if it's a new movie
         console.log(movie);
-        movies.favorites.push(movie);
+        favorites.moviesArray.push(movie);
         $http.post('/movies', movie).then(function(response) {
           console.log('saved movie to database:', response);
         });
