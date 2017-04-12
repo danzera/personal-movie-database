@@ -18,7 +18,7 @@
       </div><!--end header-row-->
 
       <div class="row body-row"><!--body row-->
-        <div ng-controller="InputController" class="col-md-5 search-column"><!--INPUT CONTROLLER / search-column-->
+        <div ng-controller="InputController as search" class="col-md-5 search-column"><!--INPUT CONTROLLER / search-column-->
 
           <div class="row search-form-row"><!--search-form row-->
             <div class="col-md-12 text-left">
@@ -28,30 +28,30 @@
                   <label for="titleSearch"><span class="glyphicon glyphicon-film"></span> Search by Title <span class="glyphicon glyphicon-film"></span></label>
                   <input ng-model="title" type="text" class="form-control" id="titleSearch" placeholder="Movie Title">
                 </div>
-                <input ng-click="searchOMDB(title)" type="submit" class="btn btn-primary" value="Search OMDB">
+                <input ng-click="search.searchOMDB(title)" type="submit" class="btn btn-primary" value="Search OMDB">
               </form>
             </div>
           </div><!--end serach-form row-->
 
-          <div ng-show="searchResults.response.data.Title" class="row movie-row"><!--movie row-->
+          <div ng-show="search.searchResults.response.data.Title" class="row movie-row"><!--movie row-->
             <div class="col-md-12">
               <div class="row">
-                <h3 class="adjust-margins">{{searchResults.response.data.Title}}</h3>
-                <p class="lead adjust-margins">Directed By: {{searchResults.response.data.Director}}</p>
-                <p class="adjust-margins">Theatrical Release: {{searchResults.response.data.Year}}</p>
+                <h3 class="adjust-margins">{{search.searchResults.response.data.Title}}</h3>
+                <p class="lead adjust-margins">Directed By: {{search.searchResults.response.data.Director}}</p>
+                <p class="adjust-margins">Theatrical Release: {{search.searchResults.response.data.Year}}</p>
               </div>
               <div class="row">
-                <img ng-src="{{searchResults.response.data.Poster}}">
+                <img ng-src="{{search.searchResults.response.data.Poster}}">
               </div>
               <div class="row plot-row">
-                <p>Plot: {{searchResults.response.data.Plot}}</p>
-                <button ng-click="addToFavorites(searchResults.response.data)" class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
+                <p>Plot: {{search.searchResults.response.data.Plot}}</p>
+                <button ng-click="search.addToFavorites(search.searchResults.response.data)" class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
               </div>
             </div>
           </div><!--end movie row-->
 
         </div><!--END INPUT CONTROLLER / seach column-->
-        <div ng-controller="OutputController" ng-show="movieService.favoriteMovies.length" class="col-md-7 favorites-column"><!--OUTPUT CONTROLLER / favorites column-->
+        <div ng-controller="OutputController as movies" ng-show="movies.favorites.moviesArray.length" class="col-md-7 favorites-column"><!--OUTPUT CONTROLLER / favorites column-->
 
           <div class="row favorites-header"><!--favorites-header row-->
             <div class="col-md-12">
@@ -59,7 +59,7 @@
             </div>
           </div><!--end favorites-header row-->
 
-          <div ng-repeat="movie in movies.favorites" class="row favorites-movie-row"><!--FAVORITE MOVIES LOOP-->
+          <div ng-repeat="movie in movies.favorites.moviesArray" class="row favorites-movie-row"><!--FAVORITE MOVIES LOOP-->
 
                 <div class="col-md-12">
                   <div class="row">
