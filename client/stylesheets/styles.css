@@ -11,6 +11,10 @@ h2 {
   font-size: 3em;
 }
 
+button {
+  /*max-width: 100%;*/
+}
+
 .header-row {
   background-color: seashell;
 }
@@ -46,6 +50,6 @@ h2 {
 }
 
 .adjust-margins {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 
+// Defines HOW Documents will be saved to the Database
 var MovieSchema = {
   title: String,
   imdbID: String
@@ -38,52 +39,29 @@ router.post('/', function(req, res) {
     });
 }); // end POST a new favorite movie
 
+// DELETE a movie from the database
+router.delete("/:imdbID", function(req,res) {
+  // Delete a movie given the imdbID
+  // { "imdbID" : "tt0030386"}
+  console.log('delete request on /movies route with params:', req.params);
+  var imdbID = req.params.imdbID;
+    // Employees.findByIdAndRemove(id, function(err, deletedEmployee){
+  //   /*
+  //     if(undefined){} - False Value
+  //     if("Some Error Code"){} - True Value
+  //   */
+  //
+  //   if(err){
+  //     console.log(err);
+  //     res.sendStatus(500);
+  //   }
+  //
+    res.send(imdbID);
+  // });
+});
+
 module.exports = router;
-//
-// // Defines HOW Documents will be saved to the Database
-// var MovieSchema = mongoose.Schema({
-//   title : String,
-//   director: String,
-//   salary: Number,
-//   status: Boolean
-// });
-//
-// /*
-//   Employees - Is a reference to the collection when finding things in the DB,
-//   Employees - Is a reference to the Schema, when we are saving things to the DB.
-// */
-// var Employees = mongoose.model("Employees", EmployeeSchema);
-//
-// //GET employees
-// router.get("/", function(req,res){
-//   //Get all employees
-//   Employees.find(function(err, allEmployees){
-//     if(err){
-//       console.log(err);
-//       res.sendStatus(500);
-//     }
-//     res.send(allEmployees);
-//   });
-// });
-//
-// //Save a new employee
-// router.post("/", function(req,res){
-//   //Instance of the Model to be saved to the database
-//   var employee = new Employees();
-//   employee.name = req.body.name;
-//   employee.position = req.body.position;
-//   employee.salary = req.body.salary;
-//   employee.status = true;
-//   employee.save(function(err, savedEmployee){
-//     if(err){
-//       console.log(err);
-//       res.sendStatus(500);
-//     }
-//
-//     res.send(savedEmployee);
-//   });
-// });
-//
+
 // //Delete an employee
 // router.delete("/", function(req,res){
 //   //Delete an employee
