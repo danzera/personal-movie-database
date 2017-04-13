@@ -18,7 +18,7 @@
       </div><!--end header-row-->
 
       <div class="row body-row"><!--body row-->
-        <div ng-controller="InputController" class="col-md-5 search-column"><!--INPUT CONTROLLER / search-column-->
+        <div ng-controller="InputController as search" class="col-md-5 search-column"><!--INPUT CONTROLLER / search-column-->
 
           <div class="row search-form-row"><!--search-form row-->
             <div class="col-md-12 text-left">
@@ -28,30 +28,27 @@
                   <label for="titleSearch"><span class="glyphicon glyphicon-film"></span> Search by Title <span class="glyphicon glyphicon-film"></span></label>
                   <input ng-model="title" type="text" class="form-control" id="titleSearch" placeholder="Movie Title">
                 </div>
-                <input ng-click="searchOMDB(title)" type="submit" class="btn btn-primary" value="Search OMDB">
+                <input ng-click="search.searchOMDBByTitle(title)" type="submit" class="btn btn-primary" value="Search OMDB">
               </form>
             </div>
           </div><!--end serach-form row-->
 
-          <div ng-show="searchResults.response.data.Title" class="row movie-row"><!--movie row-->
+          <div ng-show="search.searchResults.responseFromOMDB.data.Title" class="row movie-row"><!--movie row-->
             <div class="col-md-12">
               <div class="row">
-                <h3 class="adjust-margins">{{searchResults.response.data.Title}}</h3>
-                <p class="lead adjust-margins">Directed By: {{searchResults.response.data.Director}}</p>
-                <p class="adjust-margins">Theatrical Release: {{searchResults.response.data.Year}}</p>
-              </div>
-              <div class="row">
-                <img ng-src="{{searchResults.response.data.Poster}}">
+                <img ng-src="{{search.searchResults.responseFromOMDB.data.Poster}}">
               </div>
               <div class="row plot-row">
-                <p>Plot: {{searchResults.response.data.Plot}}</p>
-                <button ng-click="addToFavorites(searchResults.response.data)" class="btn btn-success" type="button" name="addToFavorites">Add to Favorites</button>
+                <button ng-click="search.addToFavorites(search.searchResults.responseFromOMDB.data)" class="btn btn-success" type="button" title="Add to Favorites" name="addToFavorites">{{search.searchResults.responseFromOMDB.data.Title}}</button>
+                <p class="lead adjust-margins">Directed By - {{search.searchResults.responseFromOMDB.data.Director}}</p>
+                <p class="adjust-margins"><b>Theatrical Release</b> - {{search.searchResults.responseFromOMDB.data.Year}}</p>
+                <p><b>Plot</b> - {{search.searchResults.responseFromOMDB.data.Plot}}</p>
               </div>
             </div>
           </div><!--end movie row-->
 
         </div><!--END INPUT CONTROLLER / seach column-->
-        <div ng-controller="OutputController" ng-show="movieService.favoriteMovies.length" class="col-md-7 favorites-column"><!--OUTPUT CONTROLLER / favorites column-->
+        <div ng-controller="OutputController as movies" ng-show="movies.favorites.moviesArray.length" class="col-md-7 favorites-column"><!--OUTPUT CONTROLLER / favorites column-->
 
           <div class="row favorites-header"><!--favorites-header row-->
             <div class="col-md-12">
@@ -59,7 +56,7 @@
             </div>
           </div><!--end favorites-header row-->
 
-          <div ng-repeat="movie in movieService.favoriteMovies" class="row favorites-movie-row"><!--FAVORITE MOVIES LOOP-->
+          <div ng-repeat="movie in movies.favorites.moviesArray" class="row favorites-movie-row"><!--FAVORITE MOVIES LOOP-->
 
                 <div class="col-md-12">
                   <div class="row">
@@ -67,13 +64,10 @@
                       <img class="favorites-poster" ng-src="{{movie.Poster}}">
                     </div>
                     <div class="col-md-9 favorites-movie-summary">
-                      <h3 class="adjust-margins">{{movie.Title}}</h3>
-                      <p class="lead adjust-margins">Directed By: {{movie.Director}}</p>
-                      <p class="adjust-margins">Theatrical Release: {{movie.Year}}</p>
-                      <p>Plot: {{movie.Plot}}</p>
-                      <div ng-hide="true"><!--REMOVE WHEN READY TO ADD DELETE FUNCTIONALITY-->
-                        <button class="btn btn-danger" type="button" name="deleteFromFavorites">Delete {{movie.Title}} from Favorites</button>
-                      </div>
+                      <button ng-click="movies.deleteFromFavorites(movie.imdbID)" id="movie.imdbID" class="btn btn-danger" type="button" title="Delete from Favorites" name="deleteFromFavorites">{{movie.Title}}</button>
+                      <p class="lead adjust-margins">Directed By - {{movie.Director}}</p>
+                      <p class="adjust-margins"><b>Theatrical Release</b> - {{movie.Year}}</p>
+                      <p><b>Plot</b> - {{movie.Plot}}</p>
                     </div>
                   </div>
                 </div>
