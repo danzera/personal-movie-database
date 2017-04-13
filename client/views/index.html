@@ -64,7 +64,7 @@
                       <img class="favorites-poster" ng-src="{{movie.Poster}}">
                     </div>
                     <div class="col-md-9 favorites-movie-summary">
-                      <button ng-click="movies.deleteFromFavorites(movie.imdbID)" class="btn btn-danger" type="button" title="Delete from Favorites" name="deleteFromFavorites">{{movie.Title}}</button>
+                      <button ng-click="movies.deleteFromFavorites(movie.imdbID)" id="movie.imdbID" class="btn btn-danger" type="button" title="Delete from Favorites" name="deleteFromFavorites">{{movie.Title}}</button>
                       <p class="lead adjust-margins">Directed By - {{movie.Director}}</p>
                       <p class="adjust-margins"><b>Theatrical Release</b> - {{movie.Year}}</p>
                       <p><b>Plot</b> - {{movie.Plot}}</p>

@@ -45,19 +45,13 @@ router.delete("/:imdbID", function(req,res) {
   // { "imdbID" : "tt0030386"}
   console.log('delete request on /movies route with params:', req.params);
   var imdbID = req.params.imdbID;
-    // Employees.findByIdAndRemove(id, function(err, deletedEmployee){
-  //   /*
-  //     if(undefined){} - False Value
-  //     if("Some Error Code"){} - True Value
-  //   */
-  //
-  //   if(err){
-  //     console.log(err);
-  //     res.sendStatus(500);
-  //   }
-  //
-    res.send(imdbID);
-  // });
+    Movies.findOneAndRemove({'imdbID': imdbID}, function(err, deletedMovie){
+      if(err){
+        console.log('error deleting movie', imdbID, ':', err);
+        res.sendStatus(500);
+      }
+      res.send(deletedMovie);
+    });
 });
 
 module.exports = router;

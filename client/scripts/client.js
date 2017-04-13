@@ -28,6 +28,7 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
 
   // get all favorites from our database
   function getFavoritesFromDatabase() {
+    favorites.moviesArray = [];
     $http.get('/movies') // call to the server on the '/movies' route
       .then(function(response) {
         var favoriteMoviesIdArray = response.data; // array of objects returned from the server
@@ -89,7 +90,6 @@ pmdbApp.factory('MovieService', ['$http', function($http) {
     console.log('deleteFromFavorites() movie:', imdbID);
     $http.delete('/movies/' + imdbID).then(function(response) {
       console.log('deleted movie from database:', response);
-      favorites.moviesArray = []; // clear out favorites.moviesArray
       getFavoritesFromDatabase(); // get all favorites from the database
     });
   }
